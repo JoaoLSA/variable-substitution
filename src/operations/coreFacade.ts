@@ -11,6 +11,6 @@ export function getShouldFailWhenValueIsMissing()
     {
         throw "Invalid parameter type shouldFailWhenValueIsMissing. Supply either 'true' or 'false'"
     }
-    var shouldFailWhenValueIsMissingBoolean = (shouldFailWhenValueIsMissing === 'true');
+    var shouldFailWhenValueIsMissingBoolean = (shouldFailWhenValueIsMissing.toLowerCase() === 'true');
     return shouldFailWhenValueIsMissingBoolean;
 }
