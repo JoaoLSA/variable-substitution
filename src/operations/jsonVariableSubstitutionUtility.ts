@@ -14,10 +14,9 @@ export class JsonSubstitution {
             let resultNode = this.envTreeUtil.checkEnvTreePath(jsonChildArray, 0, jsonChildArray.length, envObject);
             if(resultNode != undefined) {
                 if(resultNode.isEnd) {
-                    console.log("resultNode.value: ")
-                    console.log(resultNode.value);
                     if (resultNode.value.trim() == "" || resultNode.value == null || resultNode.value == undefined) {
-                        console.log("Ignore substitution")
+                        console.log("A provided value for substitution is empty")
+                        console.log(jsonChild);
                         return false;
                     }
                     switch(typeof(jsonObject[jsonChild])) {
