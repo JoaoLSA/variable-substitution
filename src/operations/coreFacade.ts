@@ -3,6 +3,7 @@ import core = require('@actions/core');
 export function getShouldFailWhenValueIsMissing()
 {
     var shouldFailWhenValueIsMissing = core.getInput("shouldFailWhenValueIsMissing", { required: false });
+    console.log(shouldFailWhenValueIsMissing)
     if (shouldFailWhenValueIsMissing === null || shouldFailWhenValueIsMissing === "" || shouldFailWhenValueIsMissing === undefined)
     {
         return null;
