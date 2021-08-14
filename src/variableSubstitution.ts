@@ -220,7 +220,7 @@ export class VariableSubstitution {
     private fileContentCache = new Map<String, any>();
     private parseException: string = "";
 }
-
+console.log("I can change it!")
 let varSub = new VariableSubstitution();
 varSub.run().catch((error) => {	
     core.setFailed(error);	
