@@ -7,14 +7,14 @@ export class JsonSubstitution {
         this.envTreeUtil = new EnvTreeUtility();
     }
     
-    substituteJsonVariable(jsonObject, envObject) {
+    substituteJsonVariable(jsonObject, envObject, shouldFailWhenValueIsMissing = false) {
         let isValueChanged: boolean = false;
         for(let jsonChild in jsonObject) {
             let jsonChildArray = jsonChild.split('.');
             let resultNode = this.envTreeUtil.checkEnvTreePath(jsonChildArray, 0, jsonChildArray.length, envObject);
             if(resultNode != undefined) {
                 if(resultNode.isEnd) {
-                    if (resultNode.value.trim() == "" || resultNode.value == null || resultNode.value == undefined) {
+                    if (shouldFailWhenValueIsMissing && (resultNode.value.trim() == "" || resultNode.value == null || resultNode.value == undefined)) {
                         console.log(`Value provided for key ${jsonChild} is null or empty`)
                         return false;
                     }

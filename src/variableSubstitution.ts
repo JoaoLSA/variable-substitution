@@ -5,6 +5,7 @@ import { JsonSubstitution } from './operations/jsonVariableSubstitutionUtility';
 import { XmlDomUtility } from "./operations/xmlDomUtility";
 import { XmlSubstitution } from './operations/xmlVariableSubstitution';
 import { findfiles } from "./operations/utility";
+import { getShouldFailWhenValueIsMissing } from './operations/coreFacade';
 
 import fs = require('fs');
 import yaml = require('js-yaml');
@@ -41,7 +42,8 @@ export class VariableSubstitution {
                     console.log("Applying variable substitution on JSON file: " + file);
                     let jsonSubsitution =  new JsonSubstitution();
                     let jsonObject = this.fileContentCache.get(file);
-                    let isJsonSubstitutionApplied = jsonSubsitution.substituteJsonVariable(jsonObject, EnvTreeUtility.getEnvVarTree());
+                    let shouldFailWhenValueIsMissing = getShouldFailWhenValueIsMissing();
+                    let isJsonSubstitutionApplied = jsonSubsitution.substituteJsonVariable(jsonObject, EnvTreeUtility.getEnvVarTree(), shouldFailWhenValueIsMissing);
                     if(isJsonSubstitutionApplied) {
                         fs.writeFileSync(file, (fileEncodeType.withBOM ? '\uFEFF' : '') + JSON.stringify(jsonObject, null, 4), { encoding: fileEncodeType.encoding });
                         console.log(`Successfully updated file: ${file}`);

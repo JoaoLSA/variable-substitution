@@ -5,6 +5,9 @@ inputs:
   files:
     description: 'comma separated list of XML/JSON/YAML files in which tokens are to be substituted. Files names must be specified relative to the folder-path.'
     required: true
+  shouldFailWhenValueIsMissing:
+    description: 'Boolean value that indicates that the action should fail if there is any missing or empty value in the env list (default: false)'
+    required: false
 runs:
   using: 'node12'
   main: 'lib/variableSubstitution.js'
