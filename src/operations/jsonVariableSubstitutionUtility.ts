@@ -16,7 +16,8 @@ export class JsonSubstitution {
                 if(resultNode.isEnd) {
                     console.log("resultNode.value: ")
                     console.log(resultNode.value);
-                    if (resultNode.value == "" || resultNode.value == null || resultNode.value == undefined) {
+                    if (resultNode.value.trim() == "" || resultNode.value == null || resultNode.value == undefined) {
+                        console.log("Ignore substitution")
                         return false;
                     }
                     switch(typeof(jsonObject[jsonChild])) {
