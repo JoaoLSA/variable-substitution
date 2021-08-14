@@ -14,6 +14,11 @@ export class JsonSubstitution {
             let resultNode = this.envTreeUtil.checkEnvTreePath(jsonChildArray, 0, jsonChildArray.length, envObject);
             if(resultNode != undefined) {
                 if(resultNode.isEnd) {
+                    console.log("resultNode.value: ")
+                    console.log(resultNode.value);
+                    if (resultNode.value == "" || resultNode.value == null || resultNode.value == undefined) {
+                        return false;
+                    }
                     switch(typeof(jsonObject[jsonChild])) {
                         case 'number':
                             console.log('SubstitutingValueonKeyWithNumber', jsonChild , resultNode.value);
